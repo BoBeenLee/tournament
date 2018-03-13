@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const Jarvis = require("webpack-jarvis");
 
 module.exports = {
   devtool: 'inline-source-map',
@@ -65,5 +66,8 @@ module.exports = {
     new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en|ko|ja|zh-cn)$/),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new Jarvis({
+      port: 3007 // optional: set a port
+    })
   ]
 };
