@@ -1,0 +1,22 @@
+
+.tournament_header {
+    position: relative;
+    padding-bottom: 10px;
+
+    .left {
+        position: absolute;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .btn_reset {
+
+        }   
+    }
+    .title {
+        font-size: 50px;
+        font-weight: bold;
+        text-align: center;
+    }
+}

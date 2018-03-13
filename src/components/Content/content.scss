@@ -1,0 +1,32 @@
+@import '../../theme.scss';
+
+.tournament_content {
+    display: grid;
+    grid-template-columns: 1fr 40px 1fr;
+    padding: 60px 0px;
+
+    img {
+        width: 300px;
+        &:hover {
+            opacity: 0.5;
+        }
+        margin: 0 auto;
+    }
+
+    .left_face {
+        text-align: center;
+    }
+    
+    .vs {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        font-weight: bold;
+    }
+    
+    .right_face {
+        text-align: center;
+    }
+}

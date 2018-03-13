@@ -1,0 +1,47 @@
+{
+  "name": "tournament",
+  "version": "1.0.0",
+  "description": "tournament of ideal type",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --mode=development",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BoBinLee/tournament.git"
+  },
+  "keywords": [
+    "es6",
+    "webpack",
+    "sass"
+  ],
+  "author": "bobeenlee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BoBinLee/tournament/issues"
+  },
+  "homepage": "https://github.com/BoBinLee/tournament#readme",
+  "devDependencies": {
+    "babel-loader": "^7.1.4",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-plugin-transform-async-functions": "^6.22.0",
+    "babel-plugin-transform-async-generator-functions": "^6.24.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-decorators": "^6.24.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "bundlesize": "^0.16.0",
+    "cross-env": "^5.1.4",
+    "css-loader": "^0.28.10",
+    "file-loader": "^1.1.11",
+    "html-loader": "^0.5.5",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.7",
+    "style-loader": "^0.20.3",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.11",
+    "webpack-dev-server": "^3.1.1"
+  }
+}
