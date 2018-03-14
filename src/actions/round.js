@@ -1,5 +1,6 @@
-import { compose } from '../utils/FPUtils';
-import { initState, setState, getState } from '../store';
+import { compose, after } from '../utils/FPUtils';
+import { initState, setState, getState, isFirst, isFinish } from '../store';
+import { callValue } from '../utils/ObjectUtils';
 
 const state = getState();
 
@@ -20,37 +21,58 @@ export const randomMatch = () => {
 
 export const reset = compose(randomMatch, initState);
 
-const calcRound = (moveNum) => () => {
-    const { matchIndex, roundIndex, lastRoundIndex, rounds } = getState();
-    // -1 강이동
+const calcRound = (moveNum) => {
+    const { matchIndex, roundIndex, rounds } = getState();
+    setState('matchIndex', matchIndex + moveNum);
+    // console.log(getState());
+}
+
+export const nextRound = () => {
+    const moveNum = 2;
+    const { matchIndex, roundIndex, rounds } = getState();
+    if (matchIndex + moveNum >= rounds[roundIndex].length) {
+        setState('matchIndex', 0);
+        setState('roundIndex', roundIndex + 1);
+        // console.log(getState());
+        return;
+    }
+    calcRound(moveNum);
+};
+
+export const prevRound = () => {
+    const moveNum = -2;
+    const { matchIndex, roundIndex, rounds } = getState();
     if (matchIndex + moveNum < 0) {
-        if (roundIndex - 1 < 1) {
+        if (isFirst()) {
             return;
         }
-        setState('matchIndex', rounds[roundIndex - 1].length - moveNum);
+        setState('matchIndex', rounds[roundIndex - 1].length + moveNum);
         setState('roundIndex', roundIndex - 1);
         return;
     }
-    // +1 강이동
-    if (matchIndex + moveNum > rounds[roundIndex].length) {
-        setState('matchIndex', 0);
-        setState('roundIndex', roundIndex + 1);
-        return;
-    }
-    // console.log(roundIndex, moveNum);
-    // 매치 이동
-    setState('matchIndex', matchIndex + moveNum);
-}
+    calcRound(moveNum);
+};
 
-export const nextRound = calcRound(2);
-export const prevRound = calcRound(-2);
+export const selectedRound = (selectedItem) => {
+    const { matchIndex, roundIndex, rounds } = getState();
+    let selectedRounds = callValue(() => rounds[roundIndex + 1].slice(0, matchIndex / 2), []);
+    let restRounds = callValue(() => rounds[roundIndex + 1].slice(matchIndex / 2 + 1), []);
 
-export const selectedRound = (selectedId) => {
-    const state = getState();
-    state.selectedIdealTypesIds.push(selectedId);
+    setState('rounds', {
+        ...rounds,
+        [roundIndex + 1]: [...selectedRounds, selectedItem]
+    });
+    // console.log(getState());
+    // state.selectedIdealTypesIds.push(selectedId);
 };
 
 export const unselectedRound = () => {
-    const state = getState();
-    state.selectedIdealTypesIds.pop();
+    const { matchIndex, roundIndex, rounds } = getState();
+    let selectedRounds = callValue(() => rounds[roundIndex + 1].slice(0, matchIndex / 2), []);
+    let restRounds = callValue(() => rounds[roundIndex + 1].slice(matchIndex / 2 + 1), []);
+    setState('rounds', {
+        ...rounds,
+        [roundIndex + 1]: [...selectedRounds, null]
+    });
+    // console.log(getState());
 };

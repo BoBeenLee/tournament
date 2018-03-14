@@ -3,20 +3,23 @@ import { datas } from './datas';
 export const initialState = {
     roundIndex: 1,
     matchIndex: 0,
-    lastRoundIndex: 4,
-    selectedIdealTypesIds: [],
+    // selectedIdealTypesIds: [],
     rounds: {
-        1: [ ...datas ],
-        2: [],
-        3: [],
-        4: []
+        1: [...datas],
+    }
+};
+
+var handler = {
+    set(obj, prop, value) {
+        // console.log(obj, prop, value);
+        return Reflect.set(...arguments);
     }
 };
 
 export const initState = () => {
-    global.state = {
+    global.state = new Proxy({
         ...initialState
-    };
+    }, handler);
 }
 
 export const getState = () => global.state;
@@ -26,16 +29,34 @@ export const getCurrentRound = () => {
     return rounds[roundIndex].slice(matchIndex, matchIndex + 2);
 }
 
+export const getSelectedMatch = () => {
+    const { rounds, roundIndex, matchIndex } = getState();
+    if (isRoundsEmpty(roundIndex + 1)) {
+        return {};
+    }
+    return rounds[roundIndex + 1][matchIndex / 2] || {};
+};
+
+export const isRoundsEmpty = (roundIndex) => {
+    const { rounds } = getState();
+    return !rounds[roundIndex];
+};
+
+export const getRoundLength = (roundIndex) => {
+    const { rounds } = getState();
+    return rounds[roundIndex].length;
+};
+
 export const setState = (name, value) => {
     global.state[name] = value;
 };
 
 export const isFirst = () => {
-    const { roundIndex } = global.state;
-    return roundIndex === 1;
+    const { roundIndex, matchIndex } = global.state;
+    return roundIndex === 1 && matchIndex === 0;
 }
 
 export const isFinish = () => {
-    const { roundIndex } = global.state;
-    return roundIndex === 5;
+    const { roundIndex, rounds, matchIndex } = global.state;
+    return rounds[roundIndex].length === 1;
 };

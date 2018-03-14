@@ -1,5 +1,5 @@
 import { afterAllRender } from '../../hof/withMainRender';
-import './Main.scss';
+import './main.scss';
 
 class MainPage {
     constructor() {
@@ -7,7 +7,7 @@ class MainPage {
         this.render();
     }
     render = afterAllRender(() => {
-        document.getElementById("app").innerHTML = require('./Main.html');
+        document.getElementById("app").innerHTML = require('./main.html');
     });
 }
 

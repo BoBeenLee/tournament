@@ -1,8 +1,10 @@
 @import '../../theme.scss';
 
-.tournament_content {
-    display: grid;
-    grid-template-columns: 1fr 40px 1fr;
+.tournament-content {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    justify-content: space-around;
     padding: 60px 0px;
 
     img {
@@ -15,7 +17,11 @@
         }
     }
 
-    .left_face {
+    img[active=true] {
+        border: 10px solid $third-color;
+    }
+
+    .left-face {
         text-align: center;
     }
     
@@ -28,7 +34,7 @@
         font-weight: bold;
     }
     
-    .right_face {
+    .right-face {
         text-align: center;
     }
 }

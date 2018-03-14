@@ -25,6 +25,10 @@ export const first = (arr) => {
     return arr[0];
 };
 
+export const last = (arr = []) => {
+    return arr[arr.length - 1];
+}
+
 export const foreach = (arr, callback) => {
     for (let i = 0; i < arr.length; i++) {
         callback(arr[i], i);
