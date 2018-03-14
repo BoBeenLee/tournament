@@ -1,7 +1,7 @@
 import { first } from '../../utils/FPUtils';
-import { afterAllRender } from '../../hof/withRender';
+import { afterAllRender } from '../../hof/withMainRender';
 import { nextRound, prevRound } from '../../actions/round';
-import { isFinish } from '../../store';
+import { isFinish, isFirst } from '../../store';
 import './footer.scss';
 
 class FooterBox {
@@ -29,6 +29,8 @@ class FooterBox {
         // console.log(Footer.getElementsByClassName('btn-next'));
         const BtnNext = first(Footer.getElementsByClassName('btn-next'));
         BtnNext.innerHTML = isFinish() ? 'Finish' : 'Next';
+        const BtnPrev = first(Footer.getElementsByClassName('btn-prev'));
+        BtnPrev.setAttribute('disable', isFirst());
     }
 }
 

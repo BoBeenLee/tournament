@@ -6,13 +6,6 @@ export const after = (afterFunc) => (func) => (...args) => {
     return res;
 };
 
-const compose1 = (func1, func2) => {
-    return (...args) => func1(func2(...args));
-}
-export const compose = (...args) => {
-    return reducer(args, (resFunc, func) => compose1(resFunc, func));
-};
-
 export const reducer = (arr, acc, init) => {
     let res = !init ? arr[0] : init;
     for (let i = !init ? 1 : 0; i < arr.length; i++) {
@@ -20,11 +13,17 @@ export const reducer = (arr, acc, init) => {
     }
     return res;
 };
+export const compose1 = (func1, func2) => {
+    return (...args) => func1(func2(...args));
+}
+
+export const compose = (...args) => {
+    return reducer(args, (resFunc, func) => compose1(resFunc, func));
+};
 
 export const first = (arr) => {
     return arr[0];
 };
-
 
 export const foreach = (arr, callback) => {
     for (let i = 0; i < arr.length; i++) {

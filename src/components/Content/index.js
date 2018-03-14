@@ -1,6 +1,7 @@
-import { getState } from '../../store';
-import { afterAllRender } from '../../hof/withRender';
+import { getState, getCurrentRound } from '../../store';
+import { afterAllRender } from '../../hof/withMainRender';
 import { first, partial } from '../../utils/FPUtils';
+import { findFirstClassName } from '../../utils/DOMUtils';
 import './content.scss';
 
 class ContentBox {
@@ -20,7 +21,7 @@ class ContentBox {
         RightFace.addEventListener("click", partial(this.onSelected, 2));
     }
 
-    getContent = () => first(document.getElementsByClassName(this.state.className));
+    getContent = () => findFirstClassName(this.state.className, document);
 
     onSelected = afterAllRender((id) => {
         console.log(id);
@@ -28,16 +29,16 @@ class ContentBox {
 
     render() {
         const { className } = this.state;
-        const { rounds } = getState();
+        const rounds = getCurrentRound();
 
         const Content = this.getContent();
         Content.innerHTML = require('./content.html');
 
-        const LeftImage = first(Content.getElementsByClassName('left_face_image'));
-        LeftImage.src = rounds[1][0].url;
+        const LeftImage = findFirstClassName('left_face_image', Content);
+        LeftImage.src = rounds[0].url;
 
-        const RightImage = first(Content.getElementsByClassName('right_face_image'));
-        RightImage.src = rounds[1][1].url;
+        const RightImage = findFirstClassName('right_face_image', Content);
+        RightImage.src = rounds[1].url;
     }
 }
 

@@ -1,6 +1,6 @@
 import { first } from '../../utils/FPUtils';
 import { reset } from '../../actions/round';
-import { afterAllRender } from '../../hof/withRender';
+import { afterAllRender } from '../../hof/withMainRender';
 import { getState } from '../../store';
 import './header.scss';
 

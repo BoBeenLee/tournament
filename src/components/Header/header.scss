@@ -1,6 +1,8 @@
 
 .tournament_header {
     position: relative;
+    display: flex;
+    flex-direction: column;
     padding-bottom: 10px;
 
     .left {
@@ -14,6 +16,14 @@
 
         }   
     }
+    
+    .round_tournament {
+        text-align: center;
+        padding-bottom: 15px;
+        font-size: 30px;
+        font-weight: bold;
+    }
+
     .title {
         font-size: 50px;
         font-weight: bold;

@@ -4,35 +4,46 @@ import { initState, setState, getState } from '../store';
 const state = getState();
 
 export const randomMatch = () => {
-    const state = getState();
+    const { rounds, roundIndex } = getState();
     const randomArr = [];
-    const removeArr = [...state.idealTypes];
+    // console.log((rounds.length / (rounds.length - roundIndex + 1)));
+    const removeArr = [...rounds[1]];
 
     while (!(removeArr.length === 0)) {
         randomArr.push(removeArr.pop());
     }
-    for (let i = 2; i < randomArr.length; i += 2) {
-        state.rounds[i / 2] = randomArr.slice(i - 2, i);
-    }
+    setState('rounds', {
+        // ...rounds,
+        [1]: randomArr
+    });
 };
 
-export const reset = compose(initState, randomMatch);
+export const reset = compose(randomMatch, initState);
 
 const calcRound = (moveNum) => () => {
-    const { roundIndex, lastRoundIndex } = getState();
-    // console.log(state.roundIndex);
-    if (roundIndex + moveNum < 1) {
+    const { matchIndex, roundIndex, lastRoundIndex, rounds } = getState();
+    // -1 강이동
+    if (matchIndex + moveNum < 0) {
+        if (roundIndex - 1 < 1) {
+            return;
+        }
+        setState('matchIndex', rounds[roundIndex - 1].length - moveNum);
+        setState('roundIndex', roundIndex - 1);
         return;
     }
-    if (roundIndex + moveNum > lastRoundIndex + 1) {
+    // +1 강이동
+    if (matchIndex + moveNum > rounds[roundIndex].length) {
+        setState('matchIndex', 0);
+        setState('roundIndex', roundIndex + 1);
         return;
     }
-    console.log(roundIndex, moveNum);
-    setState('roundIndex', roundIndex + moveNum);
+    // console.log(roundIndex, moveNum);
+    // 매치 이동
+    setState('matchIndex', matchIndex + moveNum);
 }
 
-export const nextRound = calcRound(1);
-export const prevRound = calcRound(-1);
+export const nextRound = calcRound(2);
+export const prevRound = calcRound(-2);
 
 export const selectedRound = (selectedId) => {
     const state = getState();
@@ -42,4 +53,4 @@ export const selectedRound = (selectedId) => {
 export const unselectedRound = () => {
     const state = getState();
     state.selectedIdealTypesIds.pop();
-}
+};
