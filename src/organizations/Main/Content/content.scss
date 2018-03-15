@@ -1,15 +1,15 @@
-@import '../../theme.scss';
+@import '../../../theme.scss';
 
 .tournament-content {
+    height: 430px;
     display: flex;
     flex-direction: row;
-    justify-items: center;
+    align-items: center;
     justify-content: space-around;
     padding: 60px 0px;
 
     img {
         width: 300px;
-        border-radius: 10%;
         margin: 0 auto;
 
         &:hover {
@@ -18,10 +18,12 @@
     }
 
     img[active=true] {
-        border: 10px solid $third-color;
+        border: 8px solid $second-color;
     }
 
     .left-face {
+        width: 350px;
+        height: 350px;
         text-align: center;
     }
     
@@ -35,6 +37,8 @@
     }
     
     .right-face {
+        width: 350px;
+        height: 350px;
         text-align: center;
     }
 }

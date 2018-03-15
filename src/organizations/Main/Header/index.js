@@ -1,8 +1,8 @@
-import { first } from '../../utils/FPUtils';
-import { reset } from '../../actions/round';
-import { afterAllRender } from '../../hof/withMainRender';
-import { getState, getRoundLength } from '../../store';
-import { findFirstClassName } from '../../utils/DOMUtils';
+import { first } from '../../../utils/FPUtils';
+import { reset } from '../../../actions/round';
+import { afterAllRender } from '../../../hof/withMainRender';
+import { getState, getRoundLength } from '../../../store';
+import { findFirstClassName } from '../../../utils/DOMUtils';
 import './header.scss';
 
 class Header {

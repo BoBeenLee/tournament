@@ -1,4 +1,4 @@
-import { render as imageListRender } from '../../components/ImageList';
+import { render as imageListRender } from '../../organizations/Result/ImageList';
 import { getState } from '../../store';
 import './result.scss';
 
@@ -13,7 +13,7 @@ class ResultPage {
         const { rounds, roundIndex } = getState();
 
         for (let i = 1; i <= roundIndex; i++) {
-            imageListRender("tournament-content-box", rounds[i]);
+            imageListRender("tournament-content-box", i);
         }
     };
 }

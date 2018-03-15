@@ -58,5 +58,10 @@ export const isFirst = () => {
 
 export const isFinish = () => {
     const { roundIndex, rounds, matchIndex } = global.state;
+    return isFinishByIndex(roundIndex);
+};
+
+export const isFinishByIndex = (roundIndex) => {
+    const { rounds, matchIndex } = global.state;
     return rounds[roundIndex].length === 1;
 };

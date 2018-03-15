@@ -1,8 +1,8 @@
-import { isFinish, getState, getCurrentRound, getSelectedMatch } from '../../store';
-import { selectedRound, unselectedRound } from '../../actions/round';
-import { afterAllRender } from '../../hof/withMainRender';
-import { first, partial } from '../../utils/FPUtils';
-import { findFirstClassName } from '../../utils/DOMUtils';
+import { isFinish, getState, getCurrentRound, getSelectedMatch } from '../../../store';
+import { selectedRound, unselectedRound } from '../../../actions/round';
+import { afterAllRender } from '../../../hof/withMainRender';
+import { first, partial } from '../../../utils/FPUtils';
+import { findFirstClassName } from '../../../utils/DOMUtils';
 import './content.scss';
 
 class Content {

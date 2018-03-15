@@ -1,9 +1,9 @@
-import { first } from '../../utils/FPUtils';
-import { moveResultPage } from '../../hof/withResultRender';
-import { afterAllRender } from '../../hof/withMainRender';
-import { nextRound, prevRound } from '../../actions/round';
-import { isFinish, isFirst, getSelectedMatch } from '../../store';
-import { findFirstClassName } from '../../utils/DOMUtils';
+import { first } from '../../../utils/FPUtils';
+import { moveResultPage } from '../../../hof/withResultRender';
+import { afterAllRender } from '../../../hof/withMainRender';
+import { nextRound, prevRound } from '../../../actions/round';
+import { isFinish, isFirst, getSelectedMatch } from '../../../store';
+import { findFirstClassName } from '../../../utils/DOMUtils';
 import './footer.scss';
 
 class Footer {
