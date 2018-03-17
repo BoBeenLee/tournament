@@ -17,5 +17,9 @@
     .btn-next {
         color: $background-color;
         background-color: $second-color;
+
+        &:hover, &:disabled {
+            background-color: #5b7b84;
+        }
     }
 }
