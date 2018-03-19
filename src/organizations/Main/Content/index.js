@@ -53,12 +53,6 @@ class Content {
         LeftImage.src = rounds[0].url;
         LeftImage.setAttribute("active", matchItem.id === rounds[0].id);
 
-        if (isFinish()) {
-            const RemoveContent = findFirstClassName('tournament-content', Root);
-            RemoveContent.removeChild(findFirstClassName('right-face', Root));
-            RemoveContent.removeChild(findFirstClassName('vs', Root));
-            return;
-        }
         const RightImage = findFirstClassName('right-face-image', Root);
         RightImage.src = rounds[1].url;
         RightImage.setAttribute("active", matchItem.id === rounds[1].id);

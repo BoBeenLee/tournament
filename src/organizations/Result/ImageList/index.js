@@ -8,7 +8,8 @@ class ImageList {
         this.state = {
             className,
             roundIndex,
-            extraWidth: 50
+            extraWidth: 50,
+            centerWidth: 306
         };
         this.render();
     }
@@ -29,19 +30,32 @@ class ImageList {
             this.renderFinish(Root, Ul);
             return;
         }
+
         for (let i = 0; i < items.length; i += 2) {
             const LeftLi = document.createElement("li");
-            LeftLi.innerHTML = `<img src="${items[i].url}" alt="" />`;
+            LeftLi.innerHTML = `<img active=${this.isActive(i)} src="${items[i].url}" alt="" />`;
             const RightLi = document.createElement("li");
-            RightLi.innerHTML = `<img src="${items[i + 1].url}" alt="" />`;
+            RightLi.innerHTML = `<img active=${this.isActive(i + 1)} src="${items[i + 1].url}" alt="" />`;
             RightLi.style = `margin-right: ${extraWidth}px`;
 
             Ul.appendChild(LeftLi);
-            Ul.appendChild(this.getDivider(extraWidth));
+            // Ul.appendChild(this.getDivider(extraWidth));
             Ul.appendChild(RightLi);
+            // if (roundIndex > 1 && items.length >= 4 && items.length / 2 - 2 === i) {
+            // console.log(roundIndex, items);
+            // Ul.appendChild(this.getCenterDivider());
+            // }
         }
         Root.appendChild(Ul);
     }
+
+    isActive = (index) => {
+        const { roundIndex, extraWidth } = this.state;
+        const { rounds } = getState();
+        const items = rounds[roundIndex];
+        // console.log(items[index], rounds[roundIndex + 1][parseInt(index / 2)])
+        return items[index].id === rounds[roundIndex + 1][parseInt(index / 2)].id;
+    };
 
     renderFinish = (Root, Ul) => {
         const { roundIndex, extraWidth } = this.state;
@@ -49,7 +63,7 @@ class ImageList {
         const items = rounds[roundIndex];
 
         const LeftLi = document.createElement("li");
-        LeftLi.innerHTML = `<img src="${items[0].url}" alt="" />`;
+        LeftLi.innerHTML = `<img active=true src="${items[0].url}" alt="" />`;
         LeftLi.style = `margin-right: ${extraWidth}px`;
         Ul.appendChild(LeftLi);
         Root.appendChild(Ul);
@@ -67,6 +81,14 @@ class ImageList {
         Vertical.style = `left: ${((128 + extraWidth) * roundIndex) / 2}px`;
         DividerLi.appendChild(Horizontal);
         DividerLi.appendChild(Vertical);
+        return DividerLi;
+    };
+
+    getCenterDivider = (extraWidth = 0) => {
+        const { roundIndex } = getState();
+        const DividerLi = document.createElement('li');
+        DividerLi.style = `width: ${(80) * roundIndex}px;`;
+        // DividerLi.innerHTML = 'hello world'
         return DividerLi;
     };
 }

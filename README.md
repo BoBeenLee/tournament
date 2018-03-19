@@ -8,11 +8,8 @@ tournament of ideal type
 - bundlesize
 - travis
 
-### Demo
-- https://public-tccpjjjycd.now.sh/
+### [Demo](https://public-tccpjjjycd.now.sh/)
 
-### Faker
-- https://randomuser.me
+### [Faker](https://randomuser.me)
 
-### Theme
-- https://color.adobe.com/ko/Neutral-Blue-color-theme-22361/
+### [Theme](https://color.adobe.com/ko/Neutral-Blue-color-theme-22361/)

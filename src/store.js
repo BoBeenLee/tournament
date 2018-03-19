@@ -9,6 +9,8 @@ export const initialState = {
     }
 };
 
+
+
 var handler = {
     set(obj, prop, value) {
         // console.log(obj, prop, value);
@@ -17,9 +19,9 @@ var handler = {
 };
 
 export const initState = () => {
-    global.state = new Proxy({
+    global.state = {
         ...initialState
-    }, handler);
+    };
 }
 
 export const getState = () => global.state;

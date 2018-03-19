@@ -10,14 +10,11 @@
         height: 100%;
         display: flex;
         flex-direction: column;
-        justify-content: center; 
-    }
-    
-    .round-tournament {
-        text-align: center;
-        padding-bottom: 15px;
-        font-size: 30px;
-        font-weight: bold;
+        justify-content: center;
+        margin-left: 20px;
+        .btn-home {
+            height: 50px;
+        }
     }
 
     .title {

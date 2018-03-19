@@ -1,4 +1,4 @@
-import { compose, after } from '../utils/FPUtils';
+import { compose, after, first } from '../utils/FPUtils';
 import { initState, setState, getState, isFirst, isFinish } from '../store';
 import { callValue } from '../utils/ObjectUtils';
 
@@ -7,14 +7,13 @@ const state = getState();
 export const randomMatch = () => {
     const { rounds, roundIndex } = getState();
     const randomArr = [];
-    // console.log((rounds.length / (rounds.length - roundIndex + 1)));
     const removeArr = [...rounds[1]];
 
     while (!(removeArr.length === 0)) {
-        randomArr.push(removeArr.pop());
+        const randomIndex = removeArr.length * Math.random();
+        randomArr.push(first(removeArr.splice(randomIndex, 1)));
     }
     setState('rounds', {
-        // ...rounds,
         [1]: randomArr
     });
 };
@@ -62,8 +61,6 @@ export const selectedRound = (selectedItem) => {
         ...rounds,
         [roundIndex + 1]: [...selectedRounds, selectedItem]
     });
-    // console.log(getState());
-    // state.selectedIdealTypesIds.push(selectedId);
 };
 
 export const unselectedRound = () => {
@@ -74,5 +71,4 @@ export const unselectedRound = () => {
         ...rounds,
         [roundIndex + 1]: [...selectedRounds, null]
     });
-    // console.log(getState());
 };

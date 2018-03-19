@@ -7,3 +7,4 @@ import { render as resultRender } from './pages/Result';
 
 reset();
 mainRender();
+// console.log(global.state);
